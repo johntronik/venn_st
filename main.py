@@ -23,16 +23,10 @@ with st.expander("詳細設定"):
     colx, coly = st.columns(2)
     with colx:
         x = st.number_input("横幅px", step=1, value=6)
-
-        left_color_pick = st.color_picker("左集合の色", "#FF4000")
-        left_color_text = st.text_input("左の英語色名(優先される)", "")
-        left_color = left_color_pick if left_color_text == "" else left_color_text
+        left_color = st.color_picker("左集合の色指定", "#FF4000")
     with coly:
         y = st.number_input("縦幅px", step=1, value=6)
-
-        right_color_pick = st.color_picker("右集合の色", "#0051FF")
-        right_color_text = st.text_input("右の英語色名(優先される)", "")
-        right_color = right_color_pick if right_color_text == "" else right_color_text
+        right_color = st.color_picker("右集合の色指定", "#0051FF")
 
     alpha = st.slider("色の透明度", 0.0, 1.0, 0.5)
     font_size = st.number_input("フォントサイズ", step=1, value=12)
@@ -46,6 +40,6 @@ venn2(
     subsets=[left, right, common],
     set_labels=(left_label, right_label),
     set_colors=(left_color, right_color),
-    alpha=0.5,
+    alpha=alpha,
 )
 st.pyplot(fig)
